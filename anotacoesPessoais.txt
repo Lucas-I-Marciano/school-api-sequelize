@@ -1,0 +1,25 @@
+Instalei o SQLite3 no disco local D (Só extrair e colocar ele nas variáveis de ambiente PATH)
+Vou usar o commonJS porque o algumas ferramentas do Sequelize (linha de comando) está mais adaptada para o CJS além de estar pareada com a documentação
+Sequelize é um ORM (Object-Relational Mapping)
+Luri:
+    "Scaffold" é mais específico para a estrutura básica de um projeto, como a que o Sequelize cria. Ele fornece as pastas e arquivos essenciais para você começar a trabalhar.
+    "Bootstrap" é um termo mais amplo que se refere a qualquer processo que ajuda a iniciar um projeto rapidamente. Isso pode incluir a criação de uma estrutura básica, como o "scaffold", mas também pode incluir a instalação de dependências, a configuração de um ambiente de desenvolvimento ou a criação de um protótipo inicial.
+    Então, podemos dizer que o "scaffold" é uma parte do "bootstrap" no contexto da aula. O "bootstrap" é o processo geral de iniciar o projeto, e o "scaffold" é uma etapa específica desse processo que cria a estrutura básica.
+.sequelizerc porque não vou deixar as pastas criadas pelo sequelize-cli na pasta raiz, joguei elas em src
+Nesta aula, você aprendeu:
+• O que são ORMs e os motivos pelos quais são utilizados no dia a dia do desenvolvimento back-end;
+• As diferenças entre utilizar SQL diretamente em um código JavaScript e utilizar os métodos de um ORM para fazer a mesma tarefa;
+• Como utilizar o sequelize-cli, ferramenta de linha de comando do Sequelize, para gerar a base de um projeto como ponto de partida;
+• Como instalar e configurar o Sequelize através dos arquivos próprios de configuração;
+• Como utilizar o Sequelize para conectar a API a uma base de dados.
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Criar modelo: npx sequelize-cli model:generate --name Person --attributes name:string,email:string,tax_id:string,active:boolean,role:string
+Para previnir que o nome do modelo se misture com o nome da tabela, coloquei a propriedade tableName dentro do modelo de Pessoa, falando que minha tabela vai se chamar pessoas. O bom de fazer isso é que o sequelize tenta plurarizar meus modelos para encontrar as tabelas
+Eu nomeei como Person porque é o padrão do JavaScript (Classes com letra Maiuscula e no singular).
+Luri:
+    O Pessoa se refere ao modelo que criamos no Sequelize, que é uma representação da nossa tabela no código. 
+    Já pessoas se refere à tabela que será criada no nosso banco de dados SQLite.
+    É como se o Pessoa fosse um mapa que nos ajuda a encontrar a tabela pessoas no banco de dados.
+
+Modelo é uma camada que faz a representação dos dados na API
