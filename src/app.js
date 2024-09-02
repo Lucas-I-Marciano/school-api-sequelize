@@ -1,13 +1,9 @@
 // import express, { json } from "express";
 const express = require("express");
+const routes = require("./routes"); // It will get index.js by standarization. It must be named "index.js"
 require("dotenv").config();
 
 const app = express();
-
-// app.use(json());
-
-app.get("/test", (req, res) => {
-  res.status(200).send({ mensagem: "Welcome to API" });
-});
+routes(app);
 
 module.exports = app;

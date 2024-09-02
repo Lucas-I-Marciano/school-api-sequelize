@@ -47,8 +47,12 @@ Nesta aula, você aprendeu:
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Padrão MVC - Model View Controler (Padrão de desenvolvimento)
-    Controller é o que faz o meio de campo entre Model e a aplicação
+    Controller é o que faz o meio de campo entre Model e a aplicação (Pegando as requisições)
     Cada etapa (Cliente requere dados na Route, Da route para o Controller...) é uma camada
     O model faz a manipulação dos dados;
     O controller age como intermediário entre o modelo e as camadas de visualização;
     O view trata do output das informações.
+Cada modelo vem com métodos próprios que o próprio Sequelize disponibiliza, basta eu acessar através do arquivo index.js da pasta models e usar o nome do modelo como método e usar as querys. Exemplo: database.Person.findAll()
+Mais em: https://sequelize.org/docs/v6/core-concepts/model-querying-basics/
+Services é uma camada intermediária ao MVC
+    REsponsável por aplicar regras aos modelos
