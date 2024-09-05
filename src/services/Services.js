@@ -6,8 +6,7 @@ class Services {
   }
 
   async getAllData() {
-    // return dataSource[this.model].findAll();
-    return dataSource.Person.findAll();
+    return dataSource[this.model].findAll();
   }
 }
 
