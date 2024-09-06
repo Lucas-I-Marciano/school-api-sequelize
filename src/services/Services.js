@@ -5,16 +5,25 @@ class Services {
     this.model = modelName;
   }
 
-  async getAllData() {
-    return dataSource[this.model].findAll();
+  async createRegister(register) {
+    return dataSource[this.model].create(register);
   }
 
   async getOneRegister(id) {
     return dataSource[this.model].findByPk(id);
   }
 
-  async createRegister(register) {
-    return dataSource[this.model].create(register);
+  async getAllData() {
+    return dataSource[this.model].findAll();
+  }
+
+  async updateRegister(updatedData, id) {
+    const listRegisterUpdated = dataSource[this.model].update(updatedData, {
+      where: {
+        id: id,
+      },
+    });
+    return listRegisterUpdated[0] === 0 ? false : true;
   }
 
   async deleteRegister(id) {
