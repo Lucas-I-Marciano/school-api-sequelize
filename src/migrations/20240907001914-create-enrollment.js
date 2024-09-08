@@ -12,6 +12,22 @@ module.exports = {
       status: {
         type: Sequelize.STRING,
       },
+      student_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "persons", // table name, even property's name is 'model
+          key: "id",
+        },
+      },
+      course_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "courses", // table name, even property's name is 'model
+          key: "id",
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

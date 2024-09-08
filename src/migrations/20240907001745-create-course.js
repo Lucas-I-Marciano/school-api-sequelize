@@ -18,6 +18,22 @@ module.exports = {
       start_date: {
         type: Sequelize.DATEONLY,
       },
+      instructor_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "persons", // table name, even property's name is 'model
+          key: "id",
+        },
+      },
+      category_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "categories", // table name, even property's name is 'model
+          key: "id",
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
