@@ -3,8 +3,11 @@ class Controller {
     this.serviceEntity = serviceEntity;
   }
 
-  async createOne(req, res) {
-    const registerToAdd = req.body;
+  async createOne(req, res, registerReceived = {}) {
+    // In order to become more flexible what data I will insert on my database
+    // As an example, Enrollment, I will get student_id from params and construct my object in a specific method of Enrollment controller
+    const registerToAdd = registerReceived == {} ? req.body : registerReceived;
+    console.log("registerToAdd", registerToAdd);
     try {
       const addedRegister = await this.serviceEntity.createRegister(
         registerToAdd
