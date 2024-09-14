@@ -8,8 +8,22 @@ class PersonServices extends Services {
   async getEnrollmentsByStudent(id) {
     const student = await super.getOneRegister(id);
 
-    const enrollmentList = await student.getRegisteredClass;
+    const enrollmentList = await student.getEnrollmentClass();
     return enrollmentList;
+  }
+
+  async getRegisteredEnrollmentByStudent(id) {
+    const student = await super.getOneRegister(id);
+
+    const registeredEnrollmentList = await student.getRegisteredClass();
+    return registeredEnrollmentList;
+  }
+
+  async getCanceledEnrollmentByStudent(id) {
+    const student = await super.getOneRegister(id);
+
+    const canceledEnrollmentList = await student.getCanceledClass();
+    return canceledEnrollmentList;
   }
 }
 

@@ -12,8 +12,17 @@ module.exports = (sequelize, DataTypes) => {
       Person.hasMany(models.Course, { foreignKey: "instructor_id" });
       Person.hasMany(models.Enrollment, {
         foreignKey: "student_id",
+        as: "enrollmentClass",
+      });
+      Person.hasMany(models.Enrollment, {
+        foreignKey: "student_id",
         scope: { status: "registered" },
         as: "registeredClass",
+      });
+      Person.hasMany(models.Enrollment, {
+        foreignKey: "student_id",
+        scope: { status: "canceled" },
+        as: "canceledClass",
       });
     }
   }

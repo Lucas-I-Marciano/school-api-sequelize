@@ -16,6 +16,12 @@ router
   .get("/persons/:studentId/enrollments", (req, res) =>
     personController.getEnrollments(req, res)
   )
+  .get("/persons/:studentId/enrollments/registered", (req, res) =>
+    personController.getRegisterEnrollment(req, res)
+  )
+  .get("/persons/:studentId/enrollments/canceled", (req, res) =>
+    personController.getCanceledEnrollment(req, res)
+  )
   .post("/persons/:studentId/enrollments", (req, res) =>
     enrollmentController.createEnroll(req, res)
   );
