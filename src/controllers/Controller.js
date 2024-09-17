@@ -6,8 +6,7 @@ class Controller {
   async createOne(req, res, registerReceived = {}) {
     // In order to become more flexible what data I will insert on my database
     // As an example, Enrollment, I will get student_id from params and construct my object in a specific method of Enrollment controller
-    const registerToAdd = registerReceived == {} ? req.body : registerReceived;
-    console.log("registerToAdd", registerToAdd);
+    const registerToAdd = registerReceived == {} ? registerReceived : req.body;
     try {
       const addedRegister = await this.serviceEntity.createRegister(
         registerToAdd
@@ -40,6 +39,18 @@ class Controller {
       return res.status(200).json(dataList);
     } catch (erro) {
       console.error(erro);
+    }
+  }
+
+  async getByOneColumnValue(req, res) {
+    try {
+      const dataList = await this.serviceEntity.findByColumn("active", 1);
+      res.status(200).json({
+        message: "Successful!",
+        data: dataList,
+      });
+    } catch (error) {
+      console.error(error);
     }
   }
 

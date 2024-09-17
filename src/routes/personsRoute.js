@@ -8,7 +8,7 @@ const enrollmentController = new EnrollmentController();
 const router = Router();
 
 router
-  .get("/persons", (req, res) => personController.getAll(req, res))
+  .get("/persons", (req, res) => personController.getByOneColumnValue(req, res))
   .get("/persons/:id", (req, res) => personController.getOne(req, res))
   .post("/persons", (req, res) => personController.createOne(req, res))
   .put("/persons/:id", (req, res) => personController.updateOne(req, res))

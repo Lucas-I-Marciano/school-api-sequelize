@@ -1,8 +1,19 @@
-const dataSource = require("../models");
+const dataSource = require("../database/models");
+const { Op } = require("sequelize");
 
 class Services {
   constructor(modelName) {
     this.model = modelName;
+  }
+
+  async findByColumn(column, value) {
+    const columnToFilter = column;
+    console.log(columnToFilter);
+    return dataSource[this.model].findAll({
+      where: {
+        columnToFilter: 1,
+      },
+    });
   }
 
   async createRegister(register) {
