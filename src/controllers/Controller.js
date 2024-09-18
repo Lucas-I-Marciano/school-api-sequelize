@@ -33,24 +33,27 @@ class Controller {
     }
   }
 
-  async getAll(req, res) {
+  async getAllScoped(req, res) {
     try {
-      const dataList = await this.serviceEntity.getAllData();
-      return res.status(200).json(dataList);
+      const dataList = await this.serviceEntity.getAllScopedData();
+      return res.status(200).json({
+        message: "Successful!",
+        data: dataList,
+      });
     } catch (erro) {
       console.error(erro);
     }
   }
 
-  async getByOneColumnValue(req, res) {
+  async getAllUnscoped(req, res) {
     try {
-      const dataList = await this.serviceEntity.findByColumn("active", 1);
-      res.status(200).json({
+      const dataList = await this.serviceEntity.getAllUnscopedData();
+      return res.status(200).json({
         message: "Successful!",
         data: dataList,
       });
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   }
 

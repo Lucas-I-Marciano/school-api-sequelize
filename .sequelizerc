@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  config: path.resolve("./src/database/config/config.json", "config.json"),
+  config: path.resolve("./src/database/config", "config.json"), // I must pass only the path at firt argument and the file itself at second argument
   "models-path": path.resolve("./src/database/models"),
   "seeders-path": path.resolve("./src/database/seeders"),
   "migrations-path": path.resolve("./src/database/migrations"),

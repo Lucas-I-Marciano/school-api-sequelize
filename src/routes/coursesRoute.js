@@ -6,7 +6,7 @@ const courseController = new CourseController();
 const router = Router();
 
 router
-  .get("/courses", (req, res) => courseController.getAll(req, res))
+  .get("/courses", (req, res) => courseController.getAllScoped(req, res))
   .get("/courses/:id", (req, res) => courseController.getOne(req, res))
   .post("/courses", (req, res) => courseController.createOne(req, res))
   .put("/courses/:id", (req, res) => courseController.updateOne(req, res))

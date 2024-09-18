@@ -6,16 +6,6 @@ class Services {
     this.model = modelName;
   }
 
-  async findByColumn(column, value) {
-    const columnToFilter = column;
-    console.log(columnToFilter);
-    return dataSource[this.model].findAll({
-      where: {
-        columnToFilter: 1,
-      },
-    });
-  }
-
   async createRegister(register) {
     return dataSource[this.model].create(register);
   }
@@ -24,8 +14,12 @@ class Services {
     return dataSource[this.model].findByPk(id);
   }
 
-  async getAllData() {
+  async getAllScopedData() {
     return dataSource[this.model].findAll();
+  }
+
+  async getAllUnscopedData() {
+    return dataSource[this.model].scope(null).findAll();
   }
 
   async updateRegister(updatedData, id) {
