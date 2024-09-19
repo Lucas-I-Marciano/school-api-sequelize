@@ -28,8 +28,18 @@ module.exports = (sequelize, DataTypes) => {
   }
   Person.init(
     {
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        validate: {
+          isAlpha: True,
+        },
+      },
+      email: {
+        type: DataTypes.STRING,
+        validate: {
+          isEmail: true,
+        },
+      },
       tax_id: DataTypes.STRING,
       active: DataTypes.BOOLEAN,
       role: DataTypes.STRING,
@@ -42,6 +52,11 @@ module.exports = (sequelize, DataTypes) => {
       defaultScope: {
         where: {
           active: true,
+        },
+      },
+      scopes: {
+        allData: {
+          where: {},
         },
       },
     }

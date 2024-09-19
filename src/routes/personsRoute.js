@@ -9,7 +9,9 @@ const router = Router();
 
 router
   .get("/persons", (req, res) => personController.getAllScoped(req, res))
-  .get("/persons/all", (req, res) => personController.getAllUnscoped(req, res))
+  .get("/persons/all", (req, res) =>
+    personController.getAllScoped(req, res, "allData")
+  )
   .get("/persons/:id", (req, res) => personController.getOne(req, res))
   .post("/persons", (req, res) => personController.createOne(req, res))
   .put("/persons/:id", (req, res) => personController.updateOne(req, res))

@@ -14,12 +14,8 @@ class Services {
     return dataSource[this.model].findByPk(id);
   }
 
-  async getAllScopedData() {
-    return dataSource[this.model].findAll();
-  }
-
-  async getAllUnscopedData() {
-    return dataSource[this.model].scope(null).findAll();
+  async getScopedData(scope) {
+    return dataSource[this.model].scope(scope).findAll();
   }
 
   async updateRegister(updatedData, id) {

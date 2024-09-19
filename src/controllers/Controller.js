@@ -33,27 +33,16 @@ class Controller {
     }
   }
 
-  async getAllScoped(req, res) {
+  async getAllScoped(req, res, scope) {
     try {
-      const dataList = await this.serviceEntity.getAllScopedData();
+      const finalScope = Boolean(scope) ? scope : "defaultScope";
+      const dataList = await this.serviceEntity.getScopedData(finalScope);
       return res.status(200).json({
         message: "Successful!",
         data: dataList,
       });
     } catch (erro) {
       console.error(erro);
-    }
-  }
-
-  async getAllUnscoped(req, res) {
-    try {
-      const dataList = await this.serviceEntity.getAllUnscopedData();
-      return res.status(200).json({
-        message: "Successful!",
-        data: dataList,
-      });
-    } catch (error) {
-      console.log(error);
     }
   }
 
