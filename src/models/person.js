@@ -15,11 +15,47 @@ module.exports = (sequelize, DataTypes) => {
   }
   Person.init(
     {
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        validate: {
+          isAlpha: {
+            args: true,
+            msg: "Please provide a valid name",
+          },
+          len: {
+            args: [3, 40],
+            msg: "Please provide a valid name",
+          },
+        },
+      },
+      email: {
+        type: DataTypes.STRING,
+        validate: {
+          isEmail: {
+            args: true,
+            msg: "Please provide a valid e-mail",
+          },
+        },
+      },
       tax_id: DataTypes.STRING,
-      active: DataTypes.BOOLEAN,
-      role: DataTypes.STRING,
+      active: {
+        type: DataTypes.BOOLEAN,
+        validate: {
+          isIn: {
+            args: [[0, 1]],
+            msg: "active field must be either 0 (inactive) or 1 (active)",
+          },
+        },
+      },
+      role: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: {
+            args: [["instructor", "student"]],
+            msg: "role field must be either 'instructor' or 'student'",
+          },
+        },
+      },
     },
     {
       sequelize,
