@@ -1,4 +1,5 @@
-const dataSource = require("../models");
+const dataSource = require("../database/models");
+const { Op } = require("sequelize");
 
 class Services {
   constructor(modelName) {
@@ -13,8 +14,8 @@ class Services {
     return dataSource[this.model].findByPk(id);
   }
 
-  async getAllData() {
-    return dataSource[this.model].findAll();
+  async getScopedData(scope) {
+    return dataSource[this.model].scope(scope).findAll();
   }
 
   async updateRegister(updatedData, id) {
