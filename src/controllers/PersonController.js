@@ -1,7 +1,11 @@
 const Controller = require("./Controller.js");
 const PersonServices = require("../services/PersonServices.js");
+const EnrollmentServices = require("../services/EnrollmentServices.js");
+const converIdHelper = require("../utils/convertIdHelper.js");
+const dataSource = require("../database/models");
 
 const personServices = new PersonServices();
+const enrollmentServices = new EnrollmentServices();
 
 class PersonController extends Controller {
   constructor() {
@@ -42,7 +46,7 @@ class PersonController extends Controller {
       const { studentId } = req.params;
 
       const canceledEnrollmentList =
-        await personServices.getCanceledEnrollmentByStudent(studentId);
+        await personServices.getCanceledEnrollmentByStudent(Number(studentId));
       res.status(200).json({
         message: "Successful!",
         data: canceledEnrollmentList,
@@ -50,6 +54,14 @@ class PersonController extends Controller {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  async getSpecificEnrollment(req, res) {
+    const objectWhere = { ...req.params };
+    const firstData = await dataSource["Enrollment"].findOne({
+      where: { ...converIdHelper(objectWhere) },
+    });
+    res.status(200).json(firstData);
   }
 }
 

@@ -12,17 +12,17 @@ module.exports = (sequelize, DataTypes) => {
       Person.hasMany(models.Course, { foreignKey: "instructor_id" });
       Person.hasMany(models.Enrollment, {
         foreignKey: "student_id",
-        as: "enrollmentClass",
+        as: "enrollmentClasses",
       });
       Person.hasMany(models.Enrollment, {
         foreignKey: "student_id",
         scope: { status: "registered" },
-        as: "registeredClass",
+        as: "registeredClasses",
       });
       Person.hasMany(models.Enrollment, {
         foreignKey: "student_id",
         scope: { status: "canceled" },
-        as: "canceledClass",
+        as: "canceledClasses",
       });
     }
   }
@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
       paranoid: true,
       defaultScope: {
         where: {
-          active: true,
+          active: true, //It will only run if I created 'active' column on my tables (in this case, by migrations)
         },
       },
       scopes: {

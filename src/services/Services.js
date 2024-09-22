@@ -14,6 +14,10 @@ class Services {
     return dataSource[this.model].findByPk(id);
   }
 
+  async getFirstRegister(where) {
+    return dataSource[this.model].findOne(where);
+  }
+
   async getScopedData(scope) {
     return dataSource[this.model].scope(scope).findAll();
   }

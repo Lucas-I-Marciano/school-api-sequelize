@@ -15,7 +15,15 @@ module.exports = (sequelize, DataTypes) => {
   }
   Enrollment.init(
     {
-      status: DataTypes.STRING,
+      status: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: {
+            args: [["registered", "canceled"]], // I Must give a array inside another
+            msg: "status field must be either 'registered' or 'canceled'",
+          },
+        },
+      },
     },
     {
       sequelize,

@@ -19,6 +19,12 @@ router
   .get("/persons/:studentId/enrollments", (req, res) =>
     personController.getEnrollments(req, res)
   )
+  .get("/persons/teste/:student_id/:id", (req, res) => {
+    personController.getSpecificEnrollment(req, res);
+  })
+  .get("/persons/:student_id/enrollments/:id", (req, res) =>
+    personController.getOneEnrollment(req, res)
+  )
   .get("/persons/:studentId/enrollments/registered", (req, res) =>
     personController.getRegisterEnrollment(req, res)
   )

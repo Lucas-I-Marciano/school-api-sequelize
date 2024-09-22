@@ -10,11 +10,9 @@ class EnrollmentController extends Controller {
 
   async createEnroll(req, res) {
     const { studentId } = req.params;
-    const { status, course_id } = req.body;
     const registerToAdd = {
-      status,
-      course_id,
-      student_id: studentId,
+      ...req.body,
+      student_id: Number(studentId),
     };
     super.createOne(req, res, registerToAdd);
   }
