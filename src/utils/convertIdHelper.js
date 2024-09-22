@@ -1,6 +1,6 @@
 module.exports = (objectWhere) => {
   for (let param in objectWhere) {
-    if (/id|Id/.test(param)) {
+    if (/id/.test(param.toLowerCase())) {
       objectWhere[param] = Number(objectWhere[param]);
     }
   }

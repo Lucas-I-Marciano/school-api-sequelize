@@ -14,28 +14,24 @@ class Services {
     return dataSource[this.model].findByPk(id);
   }
 
-  async getFirstRegister(where) {
-    return dataSource[this.model].findOne(where);
+  async getFirstRegister(objectWhere) {
+    return dataSource[this.model].findOne({ where: { ...objectWhere } }); // As I will give where framework, 'objectWhere could be just an object with what columns I want to filter
   }
 
   async getScopedData(scope) {
     return dataSource[this.model].scope(scope).findAll();
   }
 
-  async updateRegister(updatedData, id) {
+  async updateRegister(updatedData, whereObject) {
     const listRegisterUpdated = dataSource[this.model].update(updatedData, {
-      where: {
-        id: id,
-      },
+      where: { ...whereObject },
     });
     return listRegisterUpdated[0] === 0 ? false : true;
   }
 
-  async deleteRegister(id) {
+  async deleteRegister(whereObject) {
     return dataSource[this.model].destroy({
-      where: {
-        id: id,
-      },
+      where: { ...whereObject },
     });
   }
 }

@@ -19,11 +19,8 @@ router
   .get("/persons/:studentId/enrollments", (req, res) =>
     personController.getEnrollments(req, res)
   )
-  .get("/persons/teste/:student_id/:id", (req, res) => {
-    personController.getSpecificEnrollment(req, res);
-  })
-  .get("/persons/:student_id/enrollments/:id", (req, res) =>
-    personController.getOneEnrollment(req, res)
+  .post("/persons/:studentId/enrollments", (req, res) =>
+    enrollmentController.createEnroll(req, res)
   )
   .get("/persons/:studentId/enrollments/registered", (req, res) =>
     personController.getRegisterEnrollment(req, res)
@@ -31,8 +28,14 @@ router
   .get("/persons/:studentId/enrollments/canceled", (req, res) =>
     personController.getCanceledEnrollment(req, res)
   )
-  .post("/persons/:studentId/enrollments", (req, res) =>
-    enrollmentController.createEnroll(req, res)
+  .get("/persons/:student_id/enrollments/:id", (req, res) =>
+    personController.getSpecificEnrollment(req, res)
+  )
+  .put("/persons/:student_id/enrollments/:id", (req, res) =>
+    enrollmentController.updateMany(req, res)
+  )
+  .delete("/persons/:student_id/enrollments/:id", (req, res) =>
+    enrollmentController.deleteMany(req, res)
   );
 
 module.exports = router;
