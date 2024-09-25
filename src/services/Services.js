@@ -1,5 +1,4 @@
 const dataSource = require("../database/models");
-const { Op } = require("sequelize");
 
 class Services {
   constructor(modelName) {
@@ -18,8 +17,10 @@ class Services {
     return dataSource[this.model].findOne({ where: { ...objectWhere } }); // As I will give where framework, 'objectWhere could be just an object with what columns I want to filter
   }
 
-  async getScopedData(scope) {
-    return dataSource[this.model].scope(scope).findAll();
+  async getScopedData(scope, objectWhere = {}) {
+    return dataSource[this.model].scope(scope).findAll({
+      where: { ...objectWhere },
+    });
   }
 
   async updateRegister(updatedData, whereObject) {

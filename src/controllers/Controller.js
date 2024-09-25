@@ -10,9 +10,7 @@ class Controller {
     // In order to become more flexible what data I will insert on my database
     // As an example, Enrollment, I will get student_id from params and construct my object in a specific method of Enrollment controller
     const registerToAdd =
-      (registerReceived != {}) | Boolean(registerReceived)
-        ? registerReceived
-        : req.body;
+      Object.keys(registerReceived).length !== 0 ? registerReceived : req.body;
     try {
       const addedRegister = await this.serviceEntity.createRegister(
         registerToAdd
