@@ -1,4 +1,3 @@
-const { param } = require("../routes/personsRoute.js");
 const converIdHelper = require("../utils/convertIdHelper.js");
 
 class Controller {

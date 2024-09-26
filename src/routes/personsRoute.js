@@ -28,6 +28,9 @@ router
   .get("/persons/:studentId/enrollments/canceled", (req, res) =>
     personController.getCanceledEnrollment(req, res)
   )
+  .get("/persons/:studentId/enrollments/count", (req, res) =>
+    enrollmentController.countEnrollment(req, res)
+  )
   .get("/persons/:student_id/enrollments/:id", (req, res) =>
     personController.getSpecificEnrollment(req, res)
   )
