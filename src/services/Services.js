@@ -27,9 +27,19 @@ class Services {
     });
   }
 
-  async updateRegister(updatedData, whereObject) {
-    const listRegisterUpdated = dataSource[this.model].update(updatedData, {
-      where: { ...whereObject },
+  async updateRegister(
+    updatedData,
+    whereObject,
+    scope = "defaultScope",
+    t = {}
+  ) {
+    return dataSource.sequelize.transaction(async (t) => {
+      const listRegisterUpdated = dataSource[this.model]
+        .scope(scope) // Important if I need to reactive persons or change any other status from defaultScope
+        .update(updatedData, {
+          where: { ...whereObject },
+          transaction: t, // Another option from update method
+        });
     });
     return listRegisterUpdated[0] === 0 ? false : true;
   }

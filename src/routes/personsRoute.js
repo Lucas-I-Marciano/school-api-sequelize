@@ -15,6 +15,9 @@ router
   .get("/persons/:id", (req, res) => personController.getOne(req, res))
   .post("/persons", (req, res) => personController.createOne(req, res))
   .put("/persons/:id", (req, res) => personController.updateOne(req, res))
+  .put("/persons/:id/inactivate", (req, res) =>
+    personController.inactivatePerson(req, res)
+  )
   .delete("/persons/:id", (req, res) => personController.deleteOne(req, res))
   .get("/persons/:studentId/enrollments", (req, res) =>
     personController.getEnrollments(req, res)
@@ -30,6 +33,9 @@ router
   )
   .get("/persons/:studentId/enrollments/count", (req, res) =>
     enrollmentController.countEnrollment(req, res)
+  )
+  .put("/persons/:studentId/enrollments/:enrollmentId/reactivate", (req, res) =>
+    enrollmentController.reactiveEnrollment(req, res)
   )
   .get("/persons/:student_id/enrollments/:id", (req, res) =>
     personController.getSpecificEnrollment(req, res)

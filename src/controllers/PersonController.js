@@ -8,6 +8,7 @@ const personServices = new PersonServices();
 class PersonController extends Controller {
   constructor() {
     super(personServices);
+    this.enrollmentServices = new EnrollmentServices(); // Allowing me to work with enrollmentServices, as I can instance manually (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends)
   }
 
   async getEnrollments(req, res) {
@@ -59,6 +60,19 @@ class PersonController extends Controller {
     const treatedObjectWhere = { ...converIdHelper(objectWhere) };
     const result = await personServices.getOneEnrollment(treatedObjectWhere);
     return res.status(200).json(result);
+  }
+
+  async inactivatePerson(req, res) {
+    const { id } = req.params;
+    const personDeactivated = await personServices.updateRegister(
+      { active: false },
+      { id: id },
+      "allData"
+    );
+    const enrollmentCanceled = await this.enrollmentServices.updateRegister(
+      { status: "canceled" },
+      { student_id: id }
+    );
   }
 }
 

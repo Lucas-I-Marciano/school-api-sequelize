@@ -56,6 +56,23 @@ class EnrollmentController extends Controller {
       console.error(error);
     }
   }
+
+  async reactiveEnrollment(req, res) {
+    const { studentId, enrollmentId } = req.params;
+    const reactivatedEnrollment = await this.serviceEntity.updateRegister(
+      { status: "registered" },
+      {
+        student_id: studentId,
+        id: enrollmentId,
+      }
+    );
+    if (reactivatedEnrollment) {
+      res.status(200).json({
+        message: `Successful reactivated! Student: ${studentId} - Enrollment ID: ${enrollmentId}`,
+      });
+    }
+    console.log(reactivatedEnrollment);
+  }
 }
 
 module.exports = EnrollmentController;
