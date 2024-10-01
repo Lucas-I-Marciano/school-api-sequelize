@@ -60,7 +60,8 @@ class Controller {
         data: dataList,
       });
     } catch (erro) {
-      console.error(erro);
+      console.error(erro.message);
+      res.status(500).send("Failed!");
     }
   }
 
@@ -76,7 +77,8 @@ class Controller {
       }
       return res.status(200).json({ message: "Successful updated!" });
     } catch (erro) {
-      console.error(erro);
+      console.error(erro.message);
+      return res.status(500).json({ message: "Failed" });
     }
   }
 

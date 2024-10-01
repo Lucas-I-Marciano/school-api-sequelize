@@ -22,9 +22,16 @@ class Services {
   }
 
   async getScopedData(scope, objectWhere = {}) {
-    return dataSource[this.model].scope(scope).findAll({
-      where: { ...objectWhere },
-    });
+    try {
+      return dataSource.sequelize.transaction(async (t) => {
+        return dataSource[this.model].scope(scope).findAll({
+          where: { ...objectWhere },
+          transaction: t,
+        });
+      });
+    } catch (error) {
+      console.error("FAILED!");
+    }
   }
 
   async updateRegister(
@@ -33,15 +40,18 @@ class Services {
     scope = "defaultScope",
     t = {}
   ) {
-    return dataSource.sequelize.transaction(async (t) => {
-      const listRegisterUpdated = dataSource[this.model]
+    try {
+      const listRegisterUpdated = await dataSource[this.model]
         .scope(scope) // Important if I need to reactive persons or change any other status from defaultScope
         .update(updatedData, {
           where: { ...whereObject },
           transaction: t, // Another option from update method
         });
-    });
-    return listRegisterUpdated[0] === 0 ? false : true;
+
+      return listRegisterUpdated[0] === 0 ? false : true;
+    } catch (erro) {
+      console.error("FAILED!");
+    }
   }
 
   async deleteRegister(whereObject) {
